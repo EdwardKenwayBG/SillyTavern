@@ -20,5 +20,4 @@ CMD ["node", "server.js", "--no-whitelist", "--port", "7860"]
 EXPOSE 7860
 
 # Ensure proper handling of kernel signals
-CMD ["tini", "--", "node", "server.js", "--no-whitelist", "--port", "7860"]
-
+CMD ["node", "server.js", "--listen", "true", "--port", "7860", "--no-whitelist", "--enable-user-accounts", "true"]
