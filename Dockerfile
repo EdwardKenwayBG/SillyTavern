@@ -1,23 +1,11 @@
-# 1. Вземаме готовата и работеща база
 FROM ghcr.io/sillytavern/sillytavern:latest
 
-# 2. Отиваме в папката на приложението
 WORKDIR /home/node/app
 
-# 3. Копираме твоите неща (герои, настройки) от GitHub
-COPY --chown=node:node . .
-
-# 4. Настройки за порта на Hugging Face
+# Казваме на Hugging Face кой порт да гледа
 ENV PORT=7860
 EXPOSE 7860
 
-# 5. КРИТИЧНО: Махаме стария "началник", който ни пращаше на порт 8000
-ENTRYPOINT []
-
-# 6. Стартираме директно на порт 7860
-CMD ["node", "server.js", "--no-whitelist", "--port", "7860"]
-
-EXPOSE 7860
-
-# Ensure proper handling of kernel signals
-CMD ["node", "server.js", "--listen", "true", "--port", "7860", "--no-whitelist", "--enable-user-accounts", "true"]
+# Нулираме всичко и стартираме директно с вградена парола
+# ЗАМЕНИ 'Max' и 'TvoiataParola' с твоите реални данни тук
+ENTRYPOINT ["node", "server.js", "--listen", "true", "--port", "7860", "--no-whitelist", "--basic-auth-mode", "true", "--basic-auth-user", "Max", "--basic-auth-password", "MaX38076240"
